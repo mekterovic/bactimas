@@ -1,0 +1,10 @@
+Bactimas 0.7.1  													(2014-06-05)
+-------------------------------------------------------------------------------
+
+	* Changed app name (Bactrack -> Bactimas)
+	* Dual config: Icy plugin and Standalone 
+
+	App:
+	* Automatic download/setup of the conf and data foder (with demo database)
+	* Minor GUI improvements and bug fixes (linux path issue) 
+
