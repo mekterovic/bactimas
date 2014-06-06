@@ -297,7 +297,7 @@ public class CopyAndAdjustAlgorithm implements ITrackingAlgorithm {
 		final JTextField txtBallRadius = new JTextField("4");		
 		final JTextField txtRange = new JTextField("20");
 		final JTextField txtMaxBallDeltraPerc = new JTextField("" + MAX_BALL_DELTA_PERC);
-		final JComboBox<String> cboThMethod = new JComboBox<String>( S.concat(new String[] {"don't know"}, AutoThresholder.getMethods()));
+		final JComboBox cboThMethod = new JComboBox( S.concat(new String[] {"don't know"}, AutoThresholder.getMethods()));
 		
 		
 		JRadioButton redButton = new JRadioButton("Red");        	    

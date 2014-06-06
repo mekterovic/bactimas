@@ -125,7 +125,7 @@ public class S {
 	 * @return the file
 	 * @throws IOException
 	 */
-	@SuppressWarnings({ "resource", "rawtypes" })
+	@SuppressWarnings({"rawtypes" })
 	public static File unpackArchive(File theFile, File targetDir)
 			throws IOException {
 		if (!theFile.exists()) {

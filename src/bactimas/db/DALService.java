@@ -1073,7 +1073,7 @@ public class DALService {
 		}			
 		
 	}
-	@SuppressWarnings("resource")
+	//@SuppressWarnings("resource")
 	public static String moveBacteriaSplit(Bacteria someChild, int delta) {
 						
 		String desc = "";

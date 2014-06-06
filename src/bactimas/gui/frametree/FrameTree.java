@@ -354,7 +354,7 @@ public class FrameTree extends JPanel implements ActionListener, IFrameListener 
     }
     
     
-    @SuppressWarnings("rawtypes")
+    //@SuppressWarnings("rawtypes")
 	public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         
@@ -889,7 +889,7 @@ public class FrameTree extends JPanel implements ActionListener, IFrameListener 
         	
         	JPanel panel = new JPanel(new GridLayout(0,7));
     		for (int i = 0; i <= rt.getLastColumn(); ++i) {
-    			choices[i] = new JComboBox<Object>(channels);
+    			choices[i] = new JComboBox(channels);
     			measuresLabels[i] = new JLabel(rt.getColumnHeading(i));
     			collarSizes[i] = new JTextField("0");
     			panel.add(measuresLabels[i]);

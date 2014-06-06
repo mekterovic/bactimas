@@ -7,7 +7,7 @@ import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 
-public class CountryListModel extends AbstractListModel<Object> implements ComboBoxModel<Object> {
+public class CountryListModel extends AbstractListModel implements ComboBoxModel {
     
     /* ***************************************************** */
     // Variables
@@ -17,7 +17,7 @@ public class CountryListModel extends AbstractListModel<Object> implements Combo
 	 */
 	private static final long serialVersionUID = -840668407852825699L;
 
-	private JComboBox<?> combobox;
+	private JComboBox combobox;
     
     private String selectedcountry;
     private ArrayList<String> countries;
@@ -25,8 +25,8 @@ public class CountryListModel extends AbstractListModel<Object> implements Combo
     /* ***************************************************** */
     // Constructor
     
-    @SuppressWarnings("unchecked")
-	public CountryListModel(JComboBox<?> _combobox, ArrayList<String> _countries) {
+    
+	public CountryListModel(JComboBox _combobox, ArrayList<String> _countries) {
         this.combobox = _combobox;
         this.countries = _countries;
         if ( countries.size()>=1 ) {

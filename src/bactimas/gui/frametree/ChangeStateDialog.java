@@ -31,7 +31,7 @@ class ChangeStateDialog extends JDialog implements ActionListener  {
 	static Logger log = Logger.getLogger("bactimas.gui.frametree.EventDialog" );
 
 
-	JComboBox<BacteriaState> cboState;
+	JComboBox cboState;
 
 
 	private FrameTree frameTree;
@@ -46,7 +46,7 @@ class ChangeStateDialog extends JDialog implements ActionListener  {
 		
 		
 		panel.add( new JLabel("Choose new state"));
-		cboState = new JComboBox<BacteriaState>(CurrentExperiment.getAllBacteriaStates());
+		cboState = new JComboBox(CurrentExperiment.getAllBacteriaStates());
 		cboState.addItem(new BacteriaState(-1, "", ""));
 		panel.add( cboState);
 		

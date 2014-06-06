@@ -33,7 +33,7 @@ class PickAlgorithmDialog extends JDialog implements ActionListener  {
 
 	JTextField txtFrom = new JTextField("1");
 	JTextField txtTo = new JTextField();
-	JComboBox<?> cboAlgorithm;
+	JComboBox cboAlgorithm;
 
 	private FrameTree frameTree;
 
@@ -57,7 +57,7 @@ class PickAlgorithmDialog extends JDialog implements ActionListener  {
 		
 		
 		AlgorithmDesc[] algs = CurrentExperiment.getAllAlgorithms();
-		cboAlgorithm = new JComboBox<Object>(algs);
+		cboAlgorithm = new JComboBox(algs);
 		panel.add(cboAlgorithm);
 		
 		for (AlgorithmDesc ad : algs) {

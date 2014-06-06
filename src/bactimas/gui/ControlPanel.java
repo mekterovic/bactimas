@@ -581,8 +581,8 @@ public class ControlPanel extends JPanel implements ActionListener {
         	}
         	String[] options;
         	options = listOptions.toArray(new String[listOptions.size()]);
-        	final JComboBox<String> cbOnWidth = new JComboBox<String>(options);
-        	final JComboBox<String> cbOnColor = new JComboBox<String>(options);
+        	final JComboBox cbOnWidth = new JComboBox(options);
+        	final JComboBox cbOnColor = new JComboBox(options);
         	cbOnWidth.setSelectedItem("area_square_microns");
         	cbOnColor.setSelectedItem("green_ctcf");
         	
@@ -824,7 +824,8 @@ public class ControlPanel extends JPanel implements ActionListener {
 		
 	}
 	
-    private static void createAndShowBTree(String title, JPanel bTreePane) {
+    
+	private static void createAndShowBTree(String title, JPanel bTreePane) {
         //Create and set up the window.
     	_frame = new JFrame(title);
 //        frame.setDefaultCloseOperation(JFrame.);
