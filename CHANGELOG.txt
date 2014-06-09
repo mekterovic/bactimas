@@ -2,7 +2,8 @@ Bactimas 0.7.1  													(2014-06-05)
 -------------------------------------------------------------------------------
 
 	* Changed app name (Bactrack -> Bactimas)
-	* Dual config: Icy plugin and Standalone 
+	* Dual config: Icy plugin and Standalone
+	* downgraded to java 1.6.  
 
 	App:
 	* Automatic download/setup of the conf and data foder (with demo database)
