@@ -16,7 +16,7 @@ public class BactImAs extends PluginActionable {
     public void run()
     {
         // build frame and others controls
-        frame = new TitledFrame("Bactrack", true, true, true, true);        
+        frame = new TitledFrame("Bactimas", true, true, true, true);        
         new ControlPanel(frame);
         
    

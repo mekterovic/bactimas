@@ -77,7 +77,7 @@ import bactimas.util.S;
 public class ControlPanel extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = -1873388061037128863L;
-	private static String NAME = "BacTrack";
+	private static String NAME = "BactImAs";
 	private static String VERSION = "0.7.1.";
 	public static Logger log = Logger.getLogger("bactimas.gui.ControlPanel" );	
 	public static boolean debug = false; //true;
@@ -156,11 +156,13 @@ public class ControlPanel extends JPanel implements ActionListener {
 	}	
 	
 	private void sayHello () {
-		addStatusMessage("BacTrack v" +VERSION);
+		addStatusMessage("BactImAs v" +VERSION);
 		addStatusMessage("Debug is:" + ControlPanel.debug);
 		addStatusMessage("App folder is: " + S.getAppFolder());
 		addStatusMessage("Config folder is: " + S.getConfigFolder());
-		addStatusMessage("Database definition file is: " + S.getDbPropertiesAbsFileName());		
+		addStatusMessage("Database definition file is: " + S.getDbPropertiesAbsFileName());
+		addStatusMessage("Algorithm definitions file: " + S.getAllAlgorithmsAbsFileName());
+		
 	}
 	
 	private void initGUI() {
@@ -429,7 +431,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 
 			menuItem = new JMenuItem("Help on the web", KeyEvent.VK_H);
 			menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.ALT_MASK));
-			menuItem.getAccessibleContext().setAccessibleDescription("Start default browser with BacTrack's wiki page");
+			menuItem.getAccessibleContext().setAccessibleDescription("Start default browser with BactImAs's wiki page");
 			menuItem.setActionCommand(MENU_ACTION_OPEN_HELP);
 			menuItem.addActionListener(this);
 			menu.add(menuItem);				
@@ -806,7 +808,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 		    (new SQLQueryPane()).setVisible(true);
 		} else if (source.getActionCommand().equals(MENU_ACTION_OPEN_HELP)) {
 			try {				 
-				 Desktop.getDesktop().browse(new URI("http://homer.zpr.fer.hr/bactrack")); 
+				 Desktop.getDesktop().browse(new URI("http://homer.zpr.fer.hr/bactimas")); 
 			}catch(Exception ex) {
 				ex.printStackTrace();
 			}
