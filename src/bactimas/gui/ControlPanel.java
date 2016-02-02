@@ -78,7 +78,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = -1873388061037128863L;
 	private static String NAME = "BactImAs";
-	private static String VERSION = "0.7.1.";
+	private static String VERSION = "0.7.2.";
 	public static Logger log = Logger.getLogger("bactimas.gui.ControlPanel" );	
 	public static boolean debug = false; //true;
 	
@@ -592,6 +592,10 @@ public class ControlPanel extends JPanel implements ActionListener {
         	final JTextField txtMinStrokeWidth = new JTextField("5");
         	final JTextField txtMaxStrokeWidth = new JTextField("50");
         	final JTextField txtFontSize = new JTextField("18");
+        	final JCheckBox  chkFixedIntRange = new JCheckBox("");
+        	chkFixedIntRange.setSelected(false);
+        	final JTextField txtMinInt = new JTextField("");
+        	final JTextField txtMaxInt = new JTextField("");
         	final JCheckBox  chkDrawLabels = new JCheckBox("");
         	chkDrawLabels.setSelected(true);
         	final JCheckBox  chkConvertToHours = new JCheckBox("");
@@ -619,7 +623,23 @@ public class ControlPanel extends JPanel implements ActionListener {
     		panel.add(new JLabel("Convert to hours"));
     		panel.add(chkConvertToHours);
     		
-
+    		panel.add(new JLabel("Fixed intensity range(set min/max)"));
+    		panel.add(chkFixedIntRange);
+    		panel.add(new JLabel("     Min:"));
+    		panel.add(txtMinInt);
+    		panel.add(new JLabel("     Max:"));
+    		panel.add(txtMaxInt);
+    		
+    		final JCheckBox  chkFixedSizeRange = new JCheckBox("");
+        	chkFixedIntRange.setSelected(false);
+        	final JTextField txtMinSize = new JTextField("");
+        	final JTextField txtMaxSize = new JTextField("");
+        	panel.add(new JLabel("Fixed branch size range(set min/max)"));
+    		panel.add(chkFixedSizeRange);
+    		panel.add(new JLabel("     Min:"));
+    		panel.add(txtMinSize);
+    		panel.add(new JLabel("     Max:"));
+    		panel.add(txtMaxSize);
 
     		
             
@@ -735,7 +755,28 @@ public class ControlPanel extends JPanel implements ActionListener {
         							    + " \tTime:" +  (item.getFrameNo()-1) * SPF
         						);
         					}
-        					ControlPanel.addStatusMessage("--Min/Max = " + _minInt + "/" + _maxInt);
+        					ControlPanel.addStatusMessage("--Min/Max intensity = " + _minInt + "/" + _maxInt);
+        					if (chkFixedIntRange.isSelected()) {
+        						try {
+        							_minInt = Double.parseDouble(txtMinInt.getText());
+        							_maxInt = Double.parseDouble(txtMaxInt.getText());
+        	        			} catch (Exception e1) {        	        				
+        	        				ControlPanel.addStatusMessage("Couldn't parse min/max fixed intensity: " + txtMinInt.getText() + "/" + txtMaxInt.getText()) ;
+        	        			}	
+        						ControlPanel.addStatusMessage("--> overriden by fixed min/max = " + _minInt + "/" + _maxInt);
+        					}
+        					
+        					ControlPanel.addStatusMessage("--Min/Max size = " + _minSize + "/" + _maxSize);
+        					if (chkFixedSizeRange.isSelected()) {
+        						try {
+        							_minSize = Double.parseDouble(txtMinSize.getText());
+        							_maxSize = Double.parseDouble(txtMaxSize.getText());
+        	        			} catch (Exception e1) {        	        				
+        	        				ControlPanel.addStatusMessage("Couldn't parse min/max fixed size range: " + txtMinSize.getText() + "/" + txtMaxSize.getText()) ;
+        	        			}	
+        						ControlPanel.addStatusMessage("--> overriden by fixed min/max = " + _minSize + "/" + _maxSize);
+        					}
+        					
         					LinkedList<Color> palette = CurrentExperiment.getPalette(1);
 //        					BacteriaProcessor.dumpArrayListToLog(dbg, "btree Bacteria " + b);
         					
@@ -785,7 +826,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 	        cp3.add(panel, BorderLayout.CENTER);    	        
 	        cp3.add(measureAway, BorderLayout.SOUTH);
 	        
-    	    dialog.setSize(400, 300);
+    	    dialog.setSize(600, 400);
     	    dialog.setLocationRelativeTo(null);
         	dialog.setVisible(true);  			
 			

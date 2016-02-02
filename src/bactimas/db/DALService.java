@@ -859,7 +859,10 @@ public class DALService {
 							)
 						);											
 			} 								 
-				
+			if (palette.size() == 0) {
+				log.debug("Undefined/empty palette!");
+				JOptionPane.showMessageDialog(null, "Undefined/empty palette!", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			log.error("Error in getBacteriaFamilyIntensities", e);
