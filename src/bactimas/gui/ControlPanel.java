@@ -7,6 +7,7 @@ import ij.ImageJ;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Desktop;
 import java.awt.Dialog;
@@ -78,7 +79,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = -1873388061037128863L;
 	private static String NAME = "BactImAs";
-	private static String VERSION = "0.7.2.";
+	private static String VERSION = "0.7.3.";
 	public static Logger log = Logger.getLogger("bactimas.gui.ControlPanel" );	
 	public static boolean debug = false; //true;
 	
@@ -262,6 +263,11 @@ public class ControlPanel extends JPanel implements ActionListener {
 				splitPane.setDividerLocation(.8);
 				
 				
+				BorderLayout layout = (BorderLayout) ControlPanel.this.getLayout();
+				Component oldFrame = layout.getLayoutComponent(BorderLayout.EAST);
+				if (oldFrame != null) {
+					ControlPanel.this.remove(oldFrame);	
+				}
 				
 				ControlPanel.this.add(_frameTree, BorderLayout.EAST);	
 				
@@ -319,7 +325,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 				
 	}
 	public static void addStatusMessage(final String msg) {
-		java.awt.EventQueue.invokeLater(new Runnable() { public void run() {
+		SwingUtilities.invokeLater(new Runnable() { public void run() {
 			log.debug("addStatusMessage" + msg); 
 			txtStatus.append(msg + "\n");
 		     txtStatus.setCaretPosition(txtStatus.getDocument().getLength());

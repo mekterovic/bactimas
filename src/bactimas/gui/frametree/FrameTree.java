@@ -148,6 +148,7 @@ public class FrameTree extends JPanel implements ActionListener, IFrameListener 
         
         rootNode = new DefaultMutableTreeNode(CurrentExperiment.getExperiment().getExperimentName());
         treeModel = new DefaultTreeModel(rootNode);
+        
         treeModel.addTreeModelListener(new MyTreeModelListener());
         tree = new JTree(treeModel);
         tree.setEditable(true);
@@ -721,7 +722,7 @@ public class FrameTree extends JPanel implements ActionListener, IFrameListener 
 								ControlPanel.addStatusMessage("Done.");
 							}
 						};
-						S.executeInEDTThread(job);						
+						S.executeInCThread(job);						
 						
 					} catch (Exception e1) {
 						ControlPanel.addStatusMessage("Couldn't parse the assigned 'number'");
@@ -847,7 +848,7 @@ public class FrameTree extends JPanel implements ActionListener, IFrameListener 
 								ControlPanel.addStatusMessage("Done. \nPlease check the split and note that you'll have to rebuild (reckognize) and re-measure bacteria in the affected interval.");
 							}
 						};
-						S.executeInEDTThread(job);						
+						S.executeInCThread(job);						
 						
 					} catch (Exception e1) {
 						ControlPanel.addStatusMessage("Couldn't parse the assigned 'number'");
@@ -933,7 +934,7 @@ public class FrameTree extends JPanel implements ActionListener, IFrameListener 
                             reloadTree();
                     	}
                     };
-                    S.executeInEDTThread(job);
+                    S.executeInCThread(job);
                     
                 }
             });
@@ -997,7 +998,7 @@ public class FrameTree extends JPanel implements ActionListener, IFrameListener 
 	        				}        				
 	        			}        			
 	        		};
-	        		S.executeInEDTThread(job);
+	        		S.executeInCThread(job);
 	        		
 	        	}
         	} else {
@@ -1052,7 +1053,7 @@ public class FrameTree extends JPanel implements ActionListener, IFrameListener 
 	        				}        				
 	        			}        			
 	        		};
-	        		S.executeInEDTThread(job);
+	        		S.executeInCThread(job);
 	        		
 	        	}
         	} else {
@@ -1114,7 +1115,7 @@ public class FrameTree extends JPanel implements ActionListener, IFrameListener 
 	        				}        				
 	        			}        			
 	        		};
-	        		S.executeInEDTThread(job);
+	        		S.executeInCThread(job);
 	        		
 	        	}
         	} else {
@@ -1183,7 +1184,7 @@ public class FrameTree extends JPanel implements ActionListener, IFrameListener 
 	        				}        				
 	        			}        			
 	        		};
-	        		S.executeInEDTThread(job);				
+	        		S.executeInCThread(job);				
 					
 				}	
 	        	
@@ -1320,7 +1321,7 @@ public class FrameTree extends JPanel implements ActionListener, IFrameListener 
 			@Override
 			public void run() {
 				TreePath old = tree.getSelectionPath();
-		    	clear();
+		    	//clear();
 		    	initNodes();
 		    	try {
 		    		tree.setSelectionPath(old);
@@ -1339,7 +1340,9 @@ public class FrameTree extends JPanel implements ActionListener, IFrameListener 
 			boolean isEmpty = true;
 			LinkedList<DefaultMutableTreeNode> bNodes = new LinkedList<DefaultMutableTreeNode>();
 			
-		
+			ControlPanel.addStatusMessage("Loading " + CurrentExperiment.getFrameCount()  + " frames for exp.id = " + CurrentExperiment.getIdExperiment());
+			
+			clear();
 			
 			for (int frameNo = 1; frameNo <= CurrentExperiment.getFrameCount(); ++frameNo) {
 				DefaultMutableTreeNode frameNode = addObject(rootNode,	new FrameNode(CurrentExperiment.getFrame(frameNo)));
@@ -1387,7 +1390,7 @@ public class FrameTree extends JPanel implements ActionListener, IFrameListener 
 				//((DefaultTreeModel) tree.getModel()).nodeChanged(f);
 			}
 			BacteriaStateChange[] items = CurrentExperiment.getAllBacteriaStateChanges();			
-			for (int i = 0; items !=null && i < items.length; ++i) {
+			for (int i = 0; items != null && i < items.length; ++i) {
 				for (DefaultMutableTreeNode bn : bNodes) {
 					if (((BacteriaNode)bn.getUserObject()).getBacteria().getIdBacteria() == items[i].getIdBacteria() 
 						&& ((BacteriaNode)bn.getUserObject()).getParent().getFrameNo() >= items[i].getFrameNo()	
@@ -1397,6 +1400,7 @@ public class FrameTree extends JPanel implements ActionListener, IFrameListener 
 					}
 				}				
 			}		
+
 			((DefaultTreeModel) tree.getModel()).reload();
 			tree.expandRow(0);
 			

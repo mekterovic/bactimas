@@ -457,8 +457,8 @@ public class DALService {
 								        "              (SELECT value FROM BacteriaMeasurement bm1                " +
 										"                 JOIN Measurement                                       " +
 										"                   ON bm1.idMeasurement = measurement.idMeasurement     " +                  
-										"            WHERE bm1.idBacteria = vBacteriaMeasurement.idBacteria  " +
-										"              AND bm1.frameNo    = vBacteriaMeasurement.frameNo  " +
+										"            WHERE bm1.idBacteria = vBacteriaMeasurement.id_bacteria  " +
+										"              AND bm1.frameNo    = vBacteriaMeasurement.frame_no  " +
 										"              AND bm1.idChannel = " + rs.getInt("idChannel") + 
 										"              AND measurementName = '" + rs.getString("measurementName") + "') as " + rs.getString(1) + "_" + rs.getString("channelName"),
 										ExpMeasurement.EXP_VAR_GROUP_USER,
